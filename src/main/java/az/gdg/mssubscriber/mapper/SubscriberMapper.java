@@ -13,9 +13,9 @@ public interface SubscriberMapper {
 
     SubscriberMapper INSTANCE = Mappers.getMapper( SubscriberMapper.class );
 
-    public SubscriberDTO complaintToDTO(Subscriber complaint);
+    public SubscriberDTO subscriberToDTO(Subscriber complaint);
 
-    public Subscriber DtoToComplaint(SubscriberDTO complaintDTO);
+    public Subscriber DtoToSubscriber(SubscriberDTO complaintDTO);
 
     public List<SubscriberDTO> complaintListToDTO(List<Subscriber> complaint);
 }

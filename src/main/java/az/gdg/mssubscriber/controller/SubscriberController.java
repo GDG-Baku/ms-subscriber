@@ -10,17 +10,17 @@ import java.util.List;
 
 @RequestMapping("/subscriber")
 @RestController
-public class SubscribersController {
+public class SubscriberController {
 
     private final SubscriberService subscriberService;
 
-    public SubscribersController(SubscriberService subscriberService){
+    public SubscriberController(SubscriberService subscriberService){
         this.subscriberService = subscriberService;
     }
 
     @ApiOperation("get all subscribers")
     @GetMapping
-    public List<SubscriberDTO> getAllSubscripers(){
+    public List<SubscriberDTO> getAllSubscribers(){
         return subscriberService.getAllSubscribers();
     }
 
@@ -32,7 +32,7 @@ public class SubscribersController {
 
     @ApiOperation("delete subscriber by id")
     @DeleteMapping("/{id}")
-    public void deleteSubscriper(@PathVariable("id") int id){
+    public void deleteSubscriber(@PathVariable("id") int id){
         subscriberService.deleteSubscriber(id);
     }
 }
