@@ -1,6 +1,10 @@
 package az.gdg.mssubscriber.model.dto;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Setter
 @Getter
@@ -8,6 +12,5 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SubscriberDTO {
-    private Integer id;
     private String email;
 }

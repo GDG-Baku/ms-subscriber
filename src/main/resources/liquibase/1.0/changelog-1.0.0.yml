@@ -16,6 +16,6 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: email
-                  type: varchar(70)
+                  type: varchar(254)
                   constraints:
                     nullable: false

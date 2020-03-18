@@ -1,12 +1,11 @@
 package az.gdg.mssubscriber.service.impl;
 
+import az.gdg.mssubscriber.exception.SubscriberAlreadyExistException;
 import az.gdg.mssubscriber.mapper.SubscriberMapper;
-import az.gdg.mssubscriber.model.SubscriberRequest;
 import az.gdg.mssubscriber.model.dto.SubscriberDTO;
-import az.gdg.mssubscriber.model.entitiy.Subscriber;
+import az.gdg.mssubscriber.model.entitiy.SubscriberEntity;
 import az.gdg.mssubscriber.repository.SubscriberRepository;
 import az.gdg.mssubscriber.service.SubscriberService;
-import org.apache.commons.collections4.IterableUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,20 +21,25 @@ public class SubscriberServiceImpl implements SubscriberService {
 
     @Override
     public List<SubscriberDTO> getAllSubscribers() {
-        Iterable<Subscriber> complaints = subscriberRepository.findAll();
-        return SubscriberMapper.INSTANCE.complaintListToDTO(IterableUtils.toList(complaints));
+        List<SubscriberEntity> subscribers = subscriberRepository.findAll();
+        return SubscriberMapper.INSTANCE.entityListToDtoList(subscribers);
     }
 
     @Override
-    public void createSubscriber(SubscriberRequest subscriberRequest) {
-        Subscriber complaint = new Subscriber();
-        complaint.setEmail(subscriberRequest.getEmail());
-        subscriberRepository.save(complaint);
+    public void createSubscriber(SubscriberDTO subscriberDTO) {
+        SubscriberEntity subscriber = new SubscriberEntity();
+        if(subscriberRepository.findSubscriberByEmail(subscriberDTO.getEmail()) != null){
+            throw new SubscriberAlreadyExistException("Subscriber Already Exist");
+        }
+
+        subscriber.setEmail(subscriberDTO.getEmail());
+        subscriberRepository.save(subscriber);
     }
 
 
     @Override
-    public void deleteSubscriber(int id) {
-        subscriberRepository.deleteById(id);
+    public void deleteSubscriber(String email) {
+        SubscriberEntity subscriberEntity = subscriberRepository.findSubscriberByEmail(email);
+        subscriberRepository.delete(subscriberEntity);
     }
 }

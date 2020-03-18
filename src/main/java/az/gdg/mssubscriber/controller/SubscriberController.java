@@ -1,6 +1,5 @@
 package az.gdg.mssubscriber.controller;
 
-import az.gdg.mssubscriber.model.SubscriberRequest;
 import az.gdg.mssubscriber.model.dto.SubscriberDTO;
 import az.gdg.mssubscriber.service.SubscriberService;
 import io.swagger.annotations.ApiOperation;
@@ -26,13 +25,13 @@ public class SubscriberController {
 
     @ApiOperation("create subscriber")
     @PostMapping
-    public void createSubscriber(@RequestBody SubscriberRequest subscriberRequest){
-        subscriberService.createSubscriber(subscriberRequest);
+    public void createSubscriber(@RequestBody SubscriberDTO subscriberDTO){
+        subscriberService.createSubscriber(subscriberDTO);
     }
 
-    @ApiOperation("delete subscriber by id")
-    @DeleteMapping("/{id}")
-    public void deleteSubscriber(@PathVariable("id") int id){
-        subscriberService.deleteSubscriber(id);
+    @ApiOperation("delete subscriber by email")
+    @DeleteMapping()
+    public void deleteSubscriber(@RequestBody SubscriberDTO subscriberDTO){
+        subscriberService.deleteSubscriber(subscriberDTO.getEmail());
     }
 }
