@@ -1,10 +1,7 @@
 package az.gdg.mssubscriber.model.entitiy;
 
-import lombok.Getter;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -24,6 +21,7 @@ import javax.validation.constraints.Size;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class SubscriberEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,5 +37,5 @@ public class SubscriberEntity implements Serializable {
     @Size(min = 1, max = 70)
     @Column(name = "email")
     private String email;
-    
+
 }
