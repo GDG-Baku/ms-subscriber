@@ -1,7 +1,7 @@
 package az.gdg.mssubscriber.mapper;
 
 import az.gdg.mssubscriber.model.dto.SubscriberDTO;
-import az.gdg.mssubscriber.model.entitiy.SubscriberEntity;
+import az.gdg.mssubscriber.repository.entitiy.SubscriberEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
@@ -11,11 +11,11 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface SubscriberMapper {
 
-    SubscriberMapper INSTANCE = Mappers.getMapper( SubscriberMapper.class );
+    SubscriberMapper INSTANCE = Mappers.getMapper(SubscriberMapper.class);
 
-    public SubscriberDTO entityToDTO(SubscriberEntity complaint);
+    SubscriberDTO entityToDTO(SubscriberEntity complaint);
 
-    public SubscriberEntity dtoToEntity(SubscriberDTO complaintDTO);
+    SubscriberEntity dtoToEntity(SubscriberDTO complaintDTO);
 
-    public List<SubscriberDTO> entityListToDtoList(List<SubscriberEntity> complaint);
+    List<SubscriberDTO> entityListToDtoList(List<SubscriberEntity> complaint);
 }

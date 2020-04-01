@@ -3,8 +3,8 @@ package az.gdg.mssubscriber.service.impl;
 import az.gdg.mssubscriber.exception.SubscriberAlreadyExistException;
 import az.gdg.mssubscriber.mapper.SubscriberMapper;
 import az.gdg.mssubscriber.model.dto.SubscriberDTO;
-import az.gdg.mssubscriber.model.entitiy.SubscriberEntity;
 import az.gdg.mssubscriber.repository.SubscriberRepository;
+import az.gdg.mssubscriber.repository.entitiy.SubscriberEntity;
 import az.gdg.mssubscriber.service.SubscriberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ public class SubscriberServiceImpl implements SubscriberService {
     private static final Logger logger = LoggerFactory.getLogger(SubscriberServiceImpl.class);
     private final SubscriberRepository subscriberRepository;
 
-    public SubscriberServiceImpl(SubscriberRepository subscriberRepository){
+    public SubscriberServiceImpl(SubscriberRepository subscriberRepository) {
         this.subscriberRepository = subscriberRepository;
     }
 
@@ -33,7 +33,7 @@ public class SubscriberServiceImpl implements SubscriberService {
     public void createSubscriber(SubscriberDTO subscriberDTO) {
         logger.info("ActionLog.createSubscriber.start");
         SubscriberEntity subscriber = SubscriberMapper.INSTANCE.dtoToEntity(subscriberDTO);
-        if(subscriberRepository.findSubscriberByEmail(subscriberDTO.getEmail()) != null){
+        if (subscriberRepository.findSubscriberByEmail(subscriberDTO.getEmail()) != null) {
             throw new SubscriberAlreadyExistException("Subscriber Already Exist");
         }
         subscriberRepository.save(subscriber);

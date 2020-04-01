@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface SubscriberService {
 
-    public List<SubscriberDTO> getAllSubscribers();
+    List<SubscriberDTO> getAllSubscribers();
 
-    public void createSubscriber(SubscriberDTO SubscriberDTO);
+    void createSubscriber(SubscriberDTO SubscriberDTO);
 
-    public void deleteSubscriber(String email);
+    void deleteSubscriber(String email);
 
 }

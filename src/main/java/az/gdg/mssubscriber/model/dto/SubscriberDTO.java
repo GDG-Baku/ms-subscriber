@@ -1,16 +1,16 @@
 package az.gdg.mssubscriber.model.dto;
 
-import lombok.Getter;
+import az.gdg.mssubscriber.validation.subscriber.SubscriberConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Setter
-@Getter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@SubscriberConstraint
 public class SubscriberDTO {
     private String email;
 }
