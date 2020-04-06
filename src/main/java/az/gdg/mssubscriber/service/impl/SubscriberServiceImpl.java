@@ -2,9 +2,11 @@ package az.gdg.mssubscriber.service.impl;
 
 import az.gdg.mssubscriber.exception.SubscriberAlreadyExistException;
 import az.gdg.mssubscriber.mapper.SubscriberMapper;
+import az.gdg.mssubscriber.model.dto.MailDTO;
 import az.gdg.mssubscriber.model.dto.SubscriberDTO;
 import az.gdg.mssubscriber.repository.SubscriberRepository;
 import az.gdg.mssubscriber.repository.entitiy.SubscriberEntity;
+import az.gdg.mssubscriber.service.EmailService;
 import az.gdg.mssubscriber.service.SubscriberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +19,11 @@ public class SubscriberServiceImpl implements SubscriberService {
 
     private static final Logger logger = LoggerFactory.getLogger(SubscriberServiceImpl.class);
     private final SubscriberRepository subscriberRepository;
+    private final EmailService emailService;
 
-    public SubscriberServiceImpl(SubscriberRepository subscriberRepository) {
+    public SubscriberServiceImpl(SubscriberRepository subscriberRepository, EmailService emailService) {
         this.subscriberRepository = subscriberRepository;
+        this.emailService = emailService;
     }
 
     @Override
@@ -37,6 +41,12 @@ public class SubscriberServiceImpl implements SubscriberService {
             throw new SubscriberAlreadyExistException("Subscriber Already Exist");
         }
         subscriberRepository.save(subscriber);
+        MailDTO mailDTO = MailDTO.builder()
+                .mailTo(subscriberDTO.getEmail())
+                .mailSubject("You have been subscribed")
+                .mailBody("Congrats! You have been subscribed successfully")
+                .build();
+        emailService.sendToQueue(mailDTO);
         logger.info("ActionLog.createSubscriber.success");
     }
 
