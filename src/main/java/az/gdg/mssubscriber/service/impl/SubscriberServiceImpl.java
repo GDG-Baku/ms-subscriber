@@ -6,7 +6,7 @@ import az.gdg.mssubscriber.model.dto.MailDTO;
 import az.gdg.mssubscriber.model.dto.SubscriberDTO;
 import az.gdg.mssubscriber.repository.SubscriberRepository;
 import az.gdg.mssubscriber.repository.entitiy.SubscriberEntity;
-import az.gdg.mssubscriber.service.EmailService;
+import az.gdg.mssubscriber.service.MailService;
 import az.gdg.mssubscriber.service.SubscriberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,11 +19,11 @@ public class SubscriberServiceImpl implements SubscriberService {
 
     private static final Logger logger = LoggerFactory.getLogger(SubscriberServiceImpl.class);
     private final SubscriberRepository subscriberRepository;
-    private final EmailService emailService;
+    private final MailService mailService;
 
-    public SubscriberServiceImpl(SubscriberRepository subscriberRepository, EmailService emailService) {
+    public SubscriberServiceImpl(SubscriberRepository subscriberRepository, MailService mailService) {
         this.subscriberRepository = subscriberRepository;
-        this.emailService = emailService;
+        this.mailService = mailService;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class SubscriberServiceImpl implements SubscriberService {
         logger.info("ActionLog.createSubscriber.start");
         SubscriberEntity subscriber = SubscriberMapper.INSTANCE.dtoToEntity(subscriberDTO);
         if (subscriberRepository.findSubscriberByEmail(subscriberDTO.getEmail()) != null) {
-            throw new SubscriberAlreadyExistException("Subscriber Already Exist");
+            throw new SubscriberAlreadyExistException("Subscriber already exists");
         }
         subscriberRepository.save(subscriber);
         MailDTO mailDTO = MailDTO.builder()
@@ -46,7 +46,7 @@ public class SubscriberServiceImpl implements SubscriberService {
                 .mailSubject("You have been subscribed")
                 .mailBody("Congrats! You have been subscribed successfully")
                 .build();
-        emailService.sendToQueue(mailDTO);
+        mailService.sendToQueue(mailDTO);
         logger.info("ActionLog.createSubscriber.success");
     }
 

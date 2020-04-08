@@ -2,7 +2,7 @@ package az.gdg.mssubscriber.service.impl;
 
 
 import az.gdg.mssubscriber.model.dto.MailDTO;
-import az.gdg.mssubscriber.service.EmailService;
+import az.gdg.mssubscriber.service.MailService;
 import lombok.AllArgsConstructor;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Source;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @EnableBinding(Source.class)
 @AllArgsConstructor
-public class EmailServiceImpl implements EmailService {
+public class MailServiceImpl implements MailService {
 
     private final Source source;
 
