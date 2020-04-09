@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -42,7 +43,7 @@ public class SubscriberServiceImpl implements SubscriberService {
         }
         subscriberRepository.save(subscriber);
         MailDTO mailDTO = MailDTO.builder()
-                .mailTo(subscriberDTO.getEmail())
+                .mailTo(Collections.singletonList(subscriberDTO.getEmail()))
                 .mailSubject("You have been subscribed")
                 .mailBody("Congrats! You have been subscribed successfully")
                 .build();
