@@ -43,9 +43,9 @@ public class SubscriberServiceImpl implements SubscriberService {
         }
         subscriberRepository.save(subscriber);
         MailDTO mailDTO = MailDTO.builder()
-                .mailTo(Collections.singletonList(subscriberDTO.getEmail()))
-                .mailSubject("You have been subscribed")
-                .mailBody("Congrats! You have been subscribed successfully")
+                .to(Collections.singletonList(subscriberDTO.getEmail()))
+                .subject("You have been subscribed")
+                .body("Congrats! You have been subscribed successfully")
                 .build();
         mailService.sendToQueue(mailDTO);
         logger.info("ActionLog.createSubscriber.success");
