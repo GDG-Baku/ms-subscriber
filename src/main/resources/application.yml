@@ -22,3 +22,5 @@ spring:
       ddl-auto: update
   liquibase:
     change-log: classpath:liquibase/changelog-master.yml
+jwt:
+  secret: ${SECRET_KEY}

@@ -10,6 +10,6 @@ public interface SubscriberService {
 
     void createSubscriber(SubscriberDTO SubscriberDTO);
 
-    void deleteSubscriber(String email);
+    void deleteSubscriber(String token);
 
 }

@@ -6,11 +6,11 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -43,11 +43,11 @@ public class SubscriberController {
         logger.debug("Create subscriber end");
     }
 
-    @ApiOperation("delete subscriber by email")
-    @DeleteMapping()
-    public void deleteSubscriber(@RequestBody @Valid SubscriberDTO subscriberDTO) {
-        logger.debug("Delete subscriber start");
-        subscriberService.deleteSubscriber(subscriberDTO.getEmail());
-        logger.debug("Delete subscriber end");
+    @ApiOperation("unsubscribe by email")
+    @GetMapping("/unsubscribe")
+    public void unsubscribe(@RequestParam("token") String token) {
+        logger.debug("unsubscribe start");
+        subscriberService.deleteSubscriber(token);
+        logger.debug("unsubscribe end");
     }
 }
