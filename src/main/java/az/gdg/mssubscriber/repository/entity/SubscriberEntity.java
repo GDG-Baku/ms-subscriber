@@ -1,4 +1,4 @@
-package az.gdg.mssubscriber.repository.entitiy;
+package az.gdg.mssubscriber.repository.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

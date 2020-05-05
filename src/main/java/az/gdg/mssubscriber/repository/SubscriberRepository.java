@@ -1,6 +1,6 @@
 package az.gdg.mssubscriber.repository;
 
-import az.gdg.mssubscriber.repository.entitiy.SubscriberEntity;
+import az.gdg.mssubscriber.repository.entity.SubscriberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

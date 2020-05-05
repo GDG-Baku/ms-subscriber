@@ -5,7 +5,7 @@ import az.gdg.mssubscriber.mapper.SubscriberMapper;
 import az.gdg.mssubscriber.model.dto.MailDTO;
 import az.gdg.mssubscriber.model.dto.SubscriberDTO;
 import az.gdg.mssubscriber.repository.SubscriberRepository;
-import az.gdg.mssubscriber.repository.entitiy.SubscriberEntity;
+import az.gdg.mssubscriber.repository.entity.SubscriberEntity;
 import az.gdg.mssubscriber.service.MailService;
 import az.gdg.mssubscriber.service.SubscriberService;
 import org.slf4j.Logger;
