@@ -2,7 +2,7 @@ import az.gdg.mssubscriber.exception.SubscriberAlreadyExistException
 import az.gdg.mssubscriber.mapper.SubscriberMapper
 import az.gdg.mssubscriber.model.dto.SubscriberDTO
 import az.gdg.mssubscriber.repository.SubscriberRepository
-import az.gdg.mssubscriber.repository.entitiy.SubscriberEntity
+import az.gdg.mssubscriber.repository.entity.SubscriberEntity
 import az.gdg.mssubscriber.service.impl.SubscriberServiceImpl
 import spock.lang.Specification
 import spock.lang.Title
