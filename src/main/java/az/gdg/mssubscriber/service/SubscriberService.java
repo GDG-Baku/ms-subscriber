@@ -8,7 +8,7 @@ public interface SubscriberService {
 
     List<SubscriberDTO> getAllSubscribers();
 
-    void createSubscriber(SubscriberDTO SubscriberDTO);
+    void createSubscriber(SubscriberDTO subscriberDTO);
 
     void deleteSubscriber(String token);
 

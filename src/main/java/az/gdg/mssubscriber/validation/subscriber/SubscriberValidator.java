@@ -1,6 +1,5 @@
 package az.gdg.mssubscriber.validation.subscriber;
 
-
 import az.gdg.mssubscriber.model.dto.SubscriberDTO;
 import az.gdg.mssubscriber.util.CheckViolationHelper;
 import org.springframework.stereotype.Component;
@@ -25,7 +24,9 @@ public class SubscriberValidator implements
     }
 
     private boolean isEmailValid(String email, ConstraintValidatorContext context) {
-        if (email == null || !email.matches("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?") || email.length() > 254) {
+        String regex = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*" +
+                "@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+        if (email == null || !email.matches(regex) || email.length() > 254) {
             checkViolationHelper.addViolation(context, "email", "Email is not valid");
             return false;
         }

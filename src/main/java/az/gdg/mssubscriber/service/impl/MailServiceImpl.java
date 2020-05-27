@@ -1,6 +1,5 @@
 package az.gdg.mssubscriber.service.impl;
 
-
 import az.gdg.mssubscriber.model.dto.MailDTO;
 import az.gdg.mssubscriber.service.MailService;
 import lombok.AllArgsConstructor;
