@@ -50,7 +50,7 @@ public class SubscriberServiceImpl implements SubscriberService {
                 .to(Collections.singletonList(subscriberDTO.getEmail()))
                 .subject("You have been subscribed")
                 .body("Congrats! You have been subscribed successfully<br>" +
-                        "<a href='http://http://gdg-ms-auth.herokuapp.com/subscriber/unsubscribe?token=" + tokenUtil.generateTokenWithEmail(subscriberDTO.getEmail()) + "'>Unsubscribe</a>")
+                        "<a href='https://gdg-ms-subscriber.herokuapp.com/subscriber/unsubscribe?token=" + tokenUtil.generateTokenWithEmail(subscriberDTO.getEmail()) + "'>Unsubscribe</a>")
                 .build();
         mailService.sendToQueue(mailDTO);
         logger.info("ActionLog.createSubscriber.success");
