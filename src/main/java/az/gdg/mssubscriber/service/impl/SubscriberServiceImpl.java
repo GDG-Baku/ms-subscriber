@@ -33,14 +33,14 @@ public class SubscriberServiceImpl implements SubscriberService {
 
     @Override
     public List<SubscriberDTO> getAllSubscribers() {
-        logger.info("ActionLog.getAllSubscribers.start");
+        logger.info("ServiceLog.getAllSubscribers.start");
         List<SubscriberEntity> subscribers = subscriberRepository.findAll();
         return SubscriberMapper.INSTANCE.entityListToDtoList(subscribers);
     }
 
     @Override
     public void createSubscriber(SubscriberDTO subscriberDTO) {
-        logger.info("ActionLog.createSubscriber.start");
+        logger.info("ServiceLog.createSubscriber.start");
         SubscriberEntity subscriber = SubscriberMapper.INSTANCE.dtoToEntity(subscriberDTO);
         if (subscriberRepository.findSubscriberByEmail(subscriberDTO.getEmail()) != null) {
             throw new SubscriberAlreadyExistException("Subscriber already exists");
@@ -53,16 +53,16 @@ public class SubscriberServiceImpl implements SubscriberService {
                         "<a href='https://gdg-ms-subscriber.herokuapp.com/subscriber/unsubscribe?token=" + tokenUtil.generateTokenWithEmail(subscriberDTO.getEmail()) + "'>Unsubscribe</a>")
                 .build();
         mailService.sendToQueue(mailDTO);
-        logger.info("ActionLog.createSubscriber.success");
+        logger.info("ServiceLog.createSubscriber.success");
     }
 
 
     @Override
     public void deleteSubscriber(String token) {
-        logger.info("ActionLog.deleteSubscriber.start");
+        logger.info("ServiceLog.deleteSubscriber.start");
         String email = tokenUtil.getEmailFromToken(token);
         SubscriberEntity subscriberEntity = subscriberRepository.findSubscriberByEmail(email);
         subscriberRepository.delete(subscriberEntity);
-        logger.info("ActionLog.deleteSubscriber.end");
+        logger.info("ServiceLog.deleteSubscriber.end");
     }
 }
